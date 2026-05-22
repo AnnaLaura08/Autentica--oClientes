@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro de Clientes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Cadastro de Clientes</h1>
+    <p>Gerencie seus clientes após efetuar login.</p>
+  </header>
+
+  <main>
+    <section class="panel login-panel">
+      <h2>Autenticação</h2>
+      <form id="loginForm" onsubmit="event.preventDefault(); document.querySelector('.login-panel').style.display='none'; localStorage.setItem('jwtToken', 'token-temporario'); window.location.reload();">
+        <div class="form-grid">
+          
+          <div class="form-row">
+            <label for="loginEmail">E-mail</label>
+            <input type="email" id="loginEmail" required placeholder="seu.email@exemplo.com">
+          </div>
+          
+          <div class="form-row">
+            <label for="loginSenha">Senha</label>
+            <input type="password" id="loginSenha" required placeholder="********">
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" id="btnEntrar">Entrar</button>
+          </div>
+
+        </div>
+      </form>
+    </section>
+
+    <section class="panel header-actions">
+      <div>
+        <button id="logoutButton" class="secondary">Sair</button>
+      </div>
+      <div id="message" class="message"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Buscar Clientes</h2>
+      <div class="form-row">
+        <div class="search-container">
+          <input type="text" id="searchInput" placeholder="Buscar por nome...">
+          <button type="button" id="searchButton">Buscar</button>
+          <button type="button" id="refreshButton" class="secondary">Listar todos</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Lista de Clientes</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Cpf</th>
+              <th>Email</th>
+              <th>Telefone</th>
+            </tr>
+          </thead>
+          <tbody id="productTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Adicionar / Atualizar Cliente</h2>
+      <form id="productForm">
+        <input type="hidden" id="productId" />
+
+        <div class="form-grid">
+          <div class="form-row">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" required>
+          </div>
+          
+          <div class="form-row">
+            <label for="preco">Cpf</label>
+            <input type="text" id="preco" required>
+          </div>
+          
+          <div class="form-row">
+            <label for="estoque">Email</label>
+            <input type="text" id="estoque" required>
+          </div>
+          
+          <div class="form-row">
+            <label for="categoria">Telefone</label>
+            <input type="text" id="categoria" required>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit">Salvar</button>
+            <button type="button" id="clearButton" class="secondary">Cancelar</button>
+          </div>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script src="cadastro.js"></script>
+  
+  <script>
+    if(localStorage.getItem('jwtToken')) {
+      document.querySelector('.login-panel').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
