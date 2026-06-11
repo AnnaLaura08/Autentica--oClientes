@@ -39,6 +39,53 @@
     </section>
   </main>
 
-  <script src="login.js"></script>
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const message = document.getElementById('loginMessage');
+
+    function showMessage(text) {
+      message.textContent = text;
+      setTimeout(() => {
+        message.textContent = '';
+      }, 3000);
+    }
+
+    async function handleLogin(event) {
+      event.preventDefault();
+
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginSenha').value.trim();
+
+      if (!email || !password) {
+        showMessage('Preencha e-mail e senha.');
+        return;
+      }
+
+      try {
+        const response = await fetch('/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+          throw new Error(data.mensagem || 'Falha no login');
+        }
+
+        localStorage.setItem('jwtToken', data.token);
+        window.location.href = '/cadastro';
+      } catch (error) {
+        showMessage(error.message);
+      }
+    }
+
+    if (localStorage.getItem('jwtToken')) {
+      window.location.href = '/cadastro';
+    }
+
+    loginForm.addEventListener('submit', handleLogin);
+  </script>
 </body>
 </html>

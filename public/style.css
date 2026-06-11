@@ -1,5 +1,5 @@
-/* ==========================================================================
-   1. CONFIGURAÇÕES GERAIS E VARIÁVEIS (Rose Quartz Professional)
+/* ========================================================================== 
+   1. CONFIGURAÇÕES GERAIS E VARIÁVEIS
    ========================================================================= */
 * {
   box-sizing: border-box;
@@ -7,76 +7,89 @@
 
 :root {
   font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
-  
-  /* Cores de Fundo e Texto */
-  --bg-main: #fdfbfc;          /* Fundo sutilmente rosado e limpo */
-  --bg-panel: #ffffff;         /* Fundo dos painéis */
-  --text-main: #2d2225;        /* Texto principal escuro quente */
-  --text-muted: #6b5c60;       /* Texto secundário/atenuado */
-  
-  /* Identidade Visual (Rosa Corporativo) */
-  --primary: #db2777;          /* Rosa/Pink marcante e corporativo */
-  --primary-hover: #be185d;    /* Rosa profundo para hover */
-  --primary-light: #fdf2f8;    /* Fundo de tabelas/destaques (Rosa suave) */
-  --border-color: #fbcfe8;     /* Borda rosa clara */
-  --border-focus: #f472b6;     /* Borda ao focar no input */
-  
-  /* Cores Secundárias */
-  --secondary: #6b7280;        
-  --shadow: rgba(219, 39, 119, 0.04);
+  --bg-main: #f6f1f4;
+  --bg-panel: rgba(255, 255, 255, 0.92);
+  --text-main: #22181d;
+  --text-muted: #6f5f67;
+  --primary: #c81e73;
+  --primary-hover: #a3175d;
+  --primary-light: #fbe7f1;
+  --border-color: #f3bfd8;
+  --border-focus: #da5c99;
+  --secondary: #667085;
+  --shadow: rgba(32, 18, 24, 0.11);
+}
+
+html {
+  min-height: 100%;
 }
 
 body {
   margin: 0;
-  padding: 24px;
-  background-color: var(--bg-main);
+  min-height: 100vh;
+  padding: 28px 18px 40px;
   color: var(--text-main);
+  background:
+    radial-gradient(circle at top left, rgba(200, 30, 115, 0.12), transparent 34%),
+    radial-gradient(circle at top right, rgba(218, 92, 153, 0.14), transparent 26%),
+    linear-gradient(180deg, #fff9fb 0%, var(--bg-main) 100%);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-/* ==========================================================================
+/* ========================================================================== 
    2. ESTRUTURA E LAYOUT
    ========================================================================= */
-header, main {
-  max-width: 960px;
+header,
+main {
+  width: 100%;
+  max-width: 1080px;
   margin: 0 auto;
 }
 
 header {
-  margin: 40px auto 32px;
+  margin: 20px auto 28px;
   text-align: center;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .panel {
   background: var(--bg-panel);
-  border-radius: 12px;
-  padding: 32px;
-  box-shadow: 0 4px 20px var(--shadow), 0 1px 3px rgba(0,0,0,0.01);
-  border: 1px solid rgba(219, 39, 119, 0.08);
-  margin-bottom: 24px;
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 18px 45px var(--shadow), 0 1px 0 rgba(255, 255, 255, 0.55) inset;
+  border: 1px solid rgba(200, 30, 115, 0.08);
 }
 
-.panel-header-actions {
+.header-actions {
   display: flex;
-  justify-content: flex-end;
-  margin-bottom: 16px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
 }
 
-/* ==========================================================================
+/* ========================================================================== 
    3. TIPOGRAFIA
    ========================================================================= */
 h1 {
   margin: 0 0 8px;
-  font-size: 2.2rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.05;
   font-weight: 800;
+  letter-spacing: -0.04em;
   color: var(--primary);
-  letter-spacing: -0.02em;
 }
 
 h2 {
-  margin-top: 0;
-  margin-bottom: 24px;
-  font-size: 1.25rem;
+  margin: 0 0 22px;
+  font-size: 1.2rem;
+  line-height: 1.2;
   font-weight: 700;
   color: var(--text-main);
 }
@@ -84,39 +97,40 @@ h2 {
 p {
   margin: 0;
   color: var(--text-muted);
-  font-size: 0.95rem;
-  line-height: 1.5;
+  font-size: 0.96rem;
+  line-height: 1.55;
 }
 
-/* ==========================================================================
+/* ========================================================================== 
    4. FORMULÁRIOS, INPUTS E GRIDS
    ========================================================================= */
 .form-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
+  gap: 18px;
 }
 
 .search-container {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 12px;
   width: 100%;
 }
 
 .search-container input[type="text"] {
-  flex: 1;
+  flex: 1 1 240px;
 }
 
 .form-row {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 7px;
 }
 
 .form-row label {
-  font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.86rem;
+  font-weight: 700;
   color: var(--text-main);
 }
 
@@ -125,77 +139,93 @@ input[type="number"],
 input[type="email"],
 input[type="password"] {
   width: 100%;
-  padding: 10px 14px;
-  border-radius: 8px;
+  min-height: 46px;
+  padding: 12px 14px;
+  border-radius: 12px;
   border: 1.5px solid var(--border-color);
-  font-size: 0.95rem;
+  font-size: 0.96rem;
   color: var(--text-main);
-  background-color: #ffffff;
+  background: #ffffff;
   outline: none;
-  transition: all 0.15s ease-in-out;
+  transition: border-color 0.16s ease, box-shadow 0.16s ease, transform 0.16s ease;
+}
+
+input::placeholder {
+  color: #a18c96;
 }
 
 input:focus {
   border-color: var(--border-focus);
-  box-shadow: 0 0 0 3px rgba(219, 39, 119, 0.12);
+  box-shadow: 0 0 0 4px rgba(218, 92, 153, 0.14);
 }
 
-/* ==========================================================================
+/* ========================================================================== 
    5. BOTÕES E AÇÕES
    ========================================================================= */
 .form-actions {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-top: 12px;
+  margin-top: 4px;
+  flex-wrap: wrap;
 }
 
 button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 20px;
-  height: 41px;
+  min-height: 44px;
+  padding: 10px 18px;
   border: none;
-  border-radius: 8px;
-  background: var(--primary);
+  border-radius: 12px;
+  background: linear-gradient(180deg, #d92f82 0%, var(--primary) 100%);
   color: #ffffff;
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 0.94rem;
+  font-weight: 700;
   cursor: pointer;
-  white-space: nowrap; 
-  transition: all 0.15s ease;
+  white-space: nowrap;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+  box-shadow: 0 10px 22px rgba(200, 30, 115, 0.18);
 }
 
 button:hover {
-  background: var(--primary-hover);
+  background: linear-gradient(180deg, #b91c69 0%, var(--primary-hover) 100%);
+  transform: translateY(-1px);
 }
 
-button.secondary, 
-.panel-header-actions button {
-  background: #f3f4f6;
-  color: var(--secondary);
+button:active {
+  transform: translateY(0);
 }
 
-button.secondary:hover, 
-.panel-header-actions button:hover {
-  background: #e5e7eb;
+button.secondary {
+  background: #edf0f4;
+  color: #46505f;
+  box-shadow: none;
+}
+
+button.secondary:hover {
+  background: #e2e7ee;
   color: #1f2937;
 }
 
-/* ==========================================================================
+.header-actions button {
+  box-shadow: none;
+}
+
+/* ========================================================================== 
    6. TABELAS
    ========================================================================= */
 .table-container {
   overflow-x: auto;
-  border-radius: 8px;
-  border: 1px solid rgba(219, 39, 119, 0.1);
-  margin-top: 12px;
+  margin-top: 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(200, 30, 115, 0.1);
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
+  background: #ffffff;
 }
 
 thead {
@@ -203,20 +233,21 @@ thead {
 }
 
 th {
-  padding: 14px 16px;
-  font-weight: 700;
-  font-size: 0.85rem;
-  text-transform: uppercase;
+  padding: 15px 16px;
+  border-bottom: 1px solid var(--border-color);
   color: var(--primary-hover);
-  border-bottom: 2px solid var(--border-color);
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
   text-align: left;
+  letter-spacing: 0.04em;
 }
 
 td {
   padding: 14px 16px;
-  border-bottom: 1px solid #fff5f9;
+  border-bottom: 1px solid #f9edf3;
   color: var(--text-main);
-  font-size: 0.9rem;
+  font-size: 0.93rem;
 }
 
 tr:last-child td {
@@ -224,43 +255,76 @@ tr:last-child td {
 }
 
 tr:hover td {
-  background: #fffbfe;
+  background: #fff7fb;
 }
 
-/* ==========================================================================
-   7. RESPONSIVIDADE E LOGIN AJUSTADO
+/* ========================================================================== 
+   7. MENSAGENS E LOGIN
+   ========================================================================= */
+.message {
+  min-height: 1.2em;
+  font-size: 0.95rem;
+  color: var(--primary);
+}
+
+.login-panel {
+  max-width: 440px;
+  margin: 44px auto 0;
+}
+
+.login-panel .form-grid {
+  gap: 16px;
+}
+
+.login-panel .form-actions {
+  justify-content: center;
+}
+
+.login-panel button {
+  width: 100%;
+  max-width: 220px;
+}
+
+/* ========================================================================== 
+   8. RESPONSIVIDADE
    ========================================================================= */
 @media (min-width: 768px) {
   .panel:not(.login-panel) .form-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .panel:not(.login-panel) .form-actions {
     grid-column: span 2;
   }
+
+  .header-actions {
+    padding-inline: 4px;
+  }
 }
 
-/* Ajustes exclusivos do Painel de Login */
-.login-panel {
-  max-width: 400px;
-  margin: 60px auto;
-}
+@media (max-width: 640px) {
+  body {
+    padding: 18px 12px 28px;
+  }
 
-.login-panel .form-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
+  .panel {
+    padding: 22px 18px;
+    border-radius: 18px;
+  }
 
-.login-panel .form-actions {
-  display: flex;
-  justify-content: center;
-  margin-top: 12px;
-  width: 100%;
-}
+  .header-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-.login-panel button {
-  width: 140px;
-  height: 42px;
-  font-size: 0.95rem;
+  .header-actions button,
+  .login-panel button {
+    width: 100%;
+    max-width: none;
+  }
+
+  .search-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
